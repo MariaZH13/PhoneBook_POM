@@ -37,6 +37,12 @@ public class AppiumConfiguration {
 
     }
 
+    HelperBase helperBase = new HelperBase();
+
+    public HelperBase getHelperBase() {
+        return helperBase;
+    }
+
     @AfterSuite
     public void tearDown(){
         driver.quit();

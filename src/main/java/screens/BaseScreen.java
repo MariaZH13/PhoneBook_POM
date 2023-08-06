@@ -12,4 +12,5 @@ public class BaseScreen {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver),this);
     }
+
 }
