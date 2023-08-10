@@ -2,7 +2,11 @@ package screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import models.Contact;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AuthenticationScreen extends BaseScreen {
     public AuthenticationScreen(AppiumDriver<MobileElement> driver) {
@@ -50,5 +54,13 @@ public class AuthenticationScreen extends BaseScreen {
         regBtn.click();
         return this;
 
+    }
+    public boolean isAlertPresent(){
+        Alert alert = new WebDriverWait(driver,10)
+                .until(ExpectedConditions.alertIsPresent());
+        if(alert == null)return false;
+        driver.switchTo().alert();
+        alert.accept();
+        return true;
     }
 }

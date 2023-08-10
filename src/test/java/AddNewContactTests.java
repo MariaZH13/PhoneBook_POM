@@ -1,9 +1,13 @@
 import confi.AppiumConfiguration;
+import io.appium.java_client.MobileElement;
 import models.Contact;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import screens.ContactListScreen;
 import screens.SplashScreen;
+
+import java.util.List;
 
 public class AddNewContactTests extends AppiumConfiguration {
     int i = (int) (System.currentTimeMillis() / 1000) % 3600;
@@ -30,9 +34,14 @@ public class AddNewContactTests extends AppiumConfiguration {
                 .build();
 
         new ContactListScreen(driver)
-                .openContacForm()
+                .openContactForm()
                 .fillContactForm(contact)
                 .submitContact();
+
+       String phone = new ContactListScreen(driver).getLastPhone();
+       Assert.assertEquals(contact.getPhone(),phone);
+
+
 
     }
 }

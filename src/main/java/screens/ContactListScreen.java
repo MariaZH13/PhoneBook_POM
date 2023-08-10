@@ -2,8 +2,10 @@ package screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import models.Contact;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ContactListScreen extends BaseScreen{
@@ -36,10 +38,17 @@ public class ContactListScreen extends BaseScreen{
         logOutBtn.click();
         return new AuthenticationScreen(driver);
     }
-    public AddNewContactScreen openContacForm(){
+    public AddNewContactScreen openContactForm(){
         waitElement(addBtn,5);
         addBtn.click();
         return new AddNewContactScreen(driver);
     }
 
+   public String getLastPhone(){
+        if(!rowPhone.isEmpty()){
+            return rowPhone.get(rowPhone.size()-1).getText();
+        } else{
+            return null;
+        }
+   }
 }

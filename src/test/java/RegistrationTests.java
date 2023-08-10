@@ -28,8 +28,9 @@ public class RegistrationTests extends AppiumConfiguration {
                         .goToAuthenticationScreen()
                         .fillEmail("adel" + i + "gmail.com")
                         .fillPassword("Zxcvb$4500")
-                        .submitRegistration()
-                        .isContactListActivityPresent()
+                        .submitRegistrationNegative()
+                        .isAlertPresent()
+
         );
 
     }
