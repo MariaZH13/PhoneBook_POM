@@ -10,7 +10,7 @@ public class RegistrationTests extends AppiumConfiguration {
     int i = new Random().nextInt(1000) + 1000;
 
     @Test
-    public void LoginPositive() {
+    public void RegistrationPositive() {
         Assert.assertTrue(
                 new SplashScreen(driver)
                         .goToAuthenticationScreen()
@@ -22,15 +22,14 @@ public class RegistrationTests extends AppiumConfiguration {
 
     }
     @Test
-    public void LoginNegativeWrongEmail() {
+    public void RegistrationNegativeWrongEmail() {
         Assert.assertTrue(
                 new SplashScreen(driver)
                         .goToAuthenticationScreen()
                         .fillEmail("adel" + i + "gmail.com")
                         .fillPassword("Zxcvb$4500")
                         .submitRegistrationNegative()
-                        .isAlertPresent()
-
+                        .isErrorMessageHasText("{username=must be a well-formed email address}")
         );
 
     }

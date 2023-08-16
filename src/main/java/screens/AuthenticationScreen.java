@@ -28,6 +28,13 @@ public class AuthenticationScreen extends BaseScreen {
     @FindBy(xpath = "//*[@resource-id='com.sheygam.contactapp:id/regBtn']")
     MobileElement regBtn;
 
+    @FindBy(id = "android:id/message")
+    MobileElement errorTextView;
+
+    @FindBy(id = "android:id/button1")
+    MobileElement okBtn;
+
+
     public AuthenticationScreen fillEmail(String email) {
         waitElement(inputEmail,5);
         type(inputEmail,email);
@@ -35,7 +42,6 @@ public class AuthenticationScreen extends BaseScreen {
 
     }
     public AuthenticationScreen fillPassword(String password) {
-//        waitElement(inputPassword,5);
         type(inputPassword,password);
         return this;
     }
@@ -53,8 +59,8 @@ public class AuthenticationScreen extends BaseScreen {
     public AuthenticationScreen submitRegistrationNegative(){
         regBtn.click();
         return this;
-
     }
+
     public boolean isAlertPresent(){
         Alert alert = new WebDriverWait(driver,10)
                 .until(ExpectedConditions.alertIsPresent());
@@ -62,5 +68,10 @@ public class AuthenticationScreen extends BaseScreen {
         driver.switchTo().alert();
         alert.accept();
         return true;
+    }
+
+    public boolean isErrorMessageHasText(String text){
+//        return errorTextView.getText().contains(text);
+        return isErrorMessageContainsText(text);
     }
 }
